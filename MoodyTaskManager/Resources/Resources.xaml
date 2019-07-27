@@ -19,12 +19,17 @@
             <DockPanel Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}">
                 <TextBlock Text="{Binding Designation}" DockPanel.Dock="Top" Margin="5,0,0,0" />
                 <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding FilteredTaskViewModels}"
-                              ItemTemplate="{DynamicResource FilteredTaskInfoDataTemplate }">
+                              ItemTemplate="{DynamicResource FilteredTaskInfoDataTemplate }" ItemsPanel="{StaticResource HorizontalPanelTemplate}">
+
                 </ItemsControl>
                 <ContentControl DockPanel.Dock="Top" ContentTemplate="{DynamicResource TasksViewModelDataTemplate}" Content="{Binding}"></ContentControl>
             </DockPanel>
         </Border>
     </DataTemplate>
+
+    <ItemsPanelTemplate x:Key="HorizontalPanelTemplate">
+        <StackPanel Orientation="Horizontal"></StackPanel>
+    </ItemsPanelTemplate>
 
     <DataTemplate x:Key="FilteredTaskInfoDataTemplate" DataType="viewModel:FilteredTaskViewModel">
         <Button  Command="{Binding RemoveFilter}" Margin="5, 2, 0,0" MaxWidth="250" Height="30" HorizontalAlignment="Left"  Content="{Binding Name}"></Button>
@@ -62,8 +67,4 @@
             </DataGrid.ContextMenu>
         </DataGrid>
     </DataTemplate>
-
-    <Style TargetType="Button" x:Name="ButtonStyle" x:Key="ButtonStyleKey">
-        <Setter Property="Template" Value="{StaticResource sampleControlTemplate}"></Setter>
-    </Style>
 </ResourceDictionary>
